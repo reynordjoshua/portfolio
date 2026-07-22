@@ -1,7 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
+<<<<<<< HEAD
 import { API_BASE_URL } from "@/lib/content";
+=======
+>>>>>>> 14f9ea2e54fb7d96f0850f6a560e90d3bcfe0b90
 import type {
   SiteContent,
   EduItem,
@@ -19,6 +22,7 @@ export default function AdminPage() {
   const [status, setStatus] = useState<Status>({ type: "idle" });
 
   useEffect(() => {
+<<<<<<< HEAD
     fetch(`${API_BASE_URL}/api/content`)
       .then((r) => r.json())
       .then((data) => setContent(data))
@@ -28,13 +32,23 @@ export default function AdminPage() {
           message: `Could not reach backend at ${API_BASE_URL}. Is it running?`,
         })
       );
+=======
+    fetch("/api/content")
+      .then((r) => r.json())
+      .then((data) => setContent(data))
+      .catch(() => setStatus({ type: "error", message: "Could not load content.json" }));
+>>>>>>> 14f9ea2e54fb7d96f0850f6a560e90d3bcfe0b90
   }, []);
 
   async function handleSave() {
     if (!content) return;
     setStatus({ type: "saving" });
     try {
+<<<<<<< HEAD
       const res = await fetch(`${API_BASE_URL}/api/content`, {
+=======
+      const res = await fetch("/api/content", {
+>>>>>>> 14f9ea2e54fb7d96f0850f6a560e90d3bcfe0b90
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(content),

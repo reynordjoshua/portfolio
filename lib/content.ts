@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+=======
+import fs from "fs";
+import path from "path";
+
+>>>>>>> 14f9ea2e54fb7d96f0850f6a560e90d3bcfe0b90
 export interface Profile {
   name: string;
   roleLine: string;
@@ -74,6 +80,7 @@ export interface SiteContent {
   resume: Resume;
 }
 
+<<<<<<< HEAD
 // The backend's base URL. Set NEXT_PUBLIC_API_BASE_URL in .env.local (dev) or in your
 // hosting provider's environment variables (production) to point at the deployed backend.
 export const API_BASE_URL =
@@ -93,4 +100,15 @@ export async function getContent(): Promise<SiteContent> {
     throw new Error(`Failed to fetch content from backend: ${res.status}`);
   }
   return res.json();
+=======
+const DATA_PATH = path.join(process.cwd(), "data", "content.json");
+
+export function getContent(): SiteContent {
+  const raw = fs.readFileSync(DATA_PATH, "utf-8");
+  return JSON.parse(raw) as SiteContent;
+}
+
+export function saveContent(content: SiteContent): void {
+  fs.writeFileSync(DATA_PATH, JSON.stringify(content, null, 2), "utf-8");
+>>>>>>> 14f9ea2e54fb7d96f0850f6a560e90d3bcfe0b90
 }
