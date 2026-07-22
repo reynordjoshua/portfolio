@@ -6,38 +6,86 @@ const path = require("path");
 const app = express();
 const PORT = process.env.PORT || 4000;
 const DATA_PATH = path.join(__dirname, "data", "content.json");
+const PUBLIC_PATH = path.join(__dirname, "public");
 
-app.use(cors()); // Allow requests from your frontend domain (any origin, for simplicity)
+app.use(cors());
 app.use(express.json({ limit: "2mb" }));
-app.use(express.static(path.join(__dirname, "public"))); // serves /resume.pdf etc.
+app.use(express.static(PUBLIC_PATH));
 
 function readContent() {
-  const raw = fs.readFileSync(DATA_PATH, "utf-8");
+  const raw = fs.readFileSync(DATA_PATH, "utf8");
   return JSON.parse(raw);
 }
 
 function writeContent(content) {
-  fs.writeFileSync(DATA_PATH, JSON.stringify(content, null, 2), "utf-8");
+  fs.writeFileSync(DATA_PATH, JSON.stringify(content, null, 2), "utf8");
 }
 
-// Health check - useful for confirming the backend is alive after deploying
+function getResumeFile() {
+  const files = fs.readdirSync(PUBLIC_PATH);
+
+  const pdf = files.find(file =>
+    file.toLowerCase().endsWith(".pdf")
+  );
+
+  return pdf || null;
+}
+
+// Health check
 app.get("/", (req, res) => {
-  res.json({ ok: true, service: "portfolio-backend" });
+  res.json({
+    ok: true,
+    service: "portfolio-backend",
+  });
 });
 
-// GET the current site content
-app.get("/api/content", (req, res) => {
+// NEW: Automatically return whichever PDF exists
+app.get("/api/resume", (req, res) => {
   try {
-    res.json(readContent());
+    const pdf = getResumeFile();
+
+    if (!pdf) {
+      return res.status(404).json({
+        error: "No PDF found in public folder",
+      });
+    }
+
+    res.json({
+      filename: pdf,
+      url: `/${encodeURIComponent(pdf)}`,
+    });
   } catch (err) {
-    res.status(500).json({ error: "Failed to read content", detail: String(err) });
+    res.status(500).json({
+      error: "Failed to locate resume",
+      detail: String(err),
+    });
   }
 });
 
-// POST to overwrite site content (used by the admin panel)
+// Existing content API
+app.get("/api/content", (req, res) => {
+  try {
+    const content = readContent();
+
+    const pdf = getResumeFile();
+
+    if (pdf) {
+      content.resume = `/${encodeURIComponent(pdf)}`;
+    }
+
+    res.json(content);
+  } catch (err) {
+    res.status(500).json({
+      error: "Failed to read content",
+      detail: String(err),
+    });
+  }
+});
+
 app.post("/api/content", (req, res) => {
   try {
     const body = req.body;
+
     const requiredKeys = [
       "profile",
       "about",
@@ -48,15 +96,25 @@ app.post("/api/content", (req, res) => {
       "projects",
       "resume",
     ];
+
     for (const key of requiredKeys) {
       if (!(key in body)) {
-        return res.status(400).json({ error: `Missing "${key}" in payload` });
+        return res.status(400).json({
+          error: `Missing "${key}" in payload`,
+        });
       }
     }
+
     writeContent(body);
-    res.json({ ok: true });
+
+    res.json({
+      ok: true,
+    });
   } catch (err) {
-    res.status(500).json({ error: "Failed to save content", detail: String(err) });
+    res.status(500).json({
+      error: "Failed to save content",
+      detail: String(err),
+    });
   }
 });
 
