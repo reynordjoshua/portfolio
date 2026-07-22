@@ -1,0 +1,218 @@
+{
+  "profile": {
+    "name": "Reynord Joshua K",
+    "roleLine": "MBA Finance Candidate | Financial Analyst | Dashboard Developer",
+    "heroHeadline": "turns raw numbers into decisions.",
+    "heroDescription": "I build financial dashboards, valuation models, and forecasting tools — combining Advanced Excel, Python, Power BI, and Tableau with modern web technology to turn financial statements into decisions people can act on in seconds.",
+    "email": "reynordjoshua@gmail.com",
+    "phone": "+91 99016 06745",
+    "location": "Bangalore, Karnataka, India",
+    "linkedin": "https://www.linkedin.com/in/reynord-joshua-k-86b37b290/",
+    "github": ""
+  },
+  "about": {
+    "paragraphs": [
+      "I'm currently pursuing my MBA in Finance and Operations at PES University, on top of a Bachelor of Commerce in Accounting and Finance from the University of Mysore. Along the way I've built hands-on experience in financial statement analysis, valuation, financial modeling, and dashboard development.",
+      "As a Finance Intern at the Karnataka Milk Federation (KMF), I ran ratio, liquidity, and working-capital analysis, built forecasting and scenario models in Excel, and used Python for sensitivity and Monte Carlo risk analysis — then shipped an interactive dashboard so the findings were usable, not just accurate.",
+      "My goal: a full-time Finance Analyst role where I can sit at the intersection of finance and analytics — modeling the numbers, then building the tools that make them legible to a room full of decision-makers."
+    ],
+    "stats": [
+      {
+        "num": "01",
+        "label": "Finance Internship"
+      },
+      {
+        "num": "02",
+        "label": "Live Independent Projects"
+      },
+      {
+        "num": "2",
+        "label": "Great Learning Certifications"
+      },
+      {
+        "num": "4",
+        "label": "Languages Spoken"
+      }
+    ]
+  },
+  "education": [
+    {
+      "school": "PES University",
+      "detail": "MBA — Finance and Operations · Present · Bengaluru, India"
+    },
+    {
+      "school": "University of Mysore",
+      "detail": "B.Com — Accounting and Finance · Jul 2024 · Mysuru, India"
+    }
+  ],
+  "certifications": [
+    {
+      "name": "Financial Markets",
+      "detail": "Great Learning Academy · May – Jul 2024"
+    },
+    {
+      "name": "Supply Chain Management",
+      "detail": "Great Learning Academy · Oct – Dec 2023"
+    }
+  ],
+  "skills": [
+    {
+      "group": "Core Competencies",
+      "items": [
+        {
+          "name": "Financial Modeling",
+          "level": 95
+        },
+        {
+          "name": "Financial Statement Analysis",
+          "level": 93
+        },
+        {
+          "name": "Working Capital Analysis",
+          "level": 90
+        },
+        {
+          "name": "Risk & Scenario Analysis",
+          "level": 88
+        }
+      ]
+    },
+    {
+      "group": "Analytics & Visualization",
+      "items": [
+        {
+          "name": "Advanced Excel",
+          "level": 96
+        },
+        {
+          "name": "Power BI",
+          "level": 90
+        },
+        {
+          "name": "Tableau",
+          "level": 86
+        },
+        {
+          "name": "KPI Dashboarding",
+          "level": 92
+        }
+      ]
+    },
+    {
+      "group": "Programming & Tools",
+      "items": [
+        {
+          "name": "Python",
+          "level": 85
+        },
+        {
+          "name": "R Programming",
+          "level": 72
+        },
+        {
+          "name": "VS Code",
+          "level": 88
+        },
+        {
+          "name": "MS Office",
+          "level": 95
+        }
+      ]
+    }
+  ],
+  "experience": [
+    {
+      "role": "MBA — Finance",
+      "org": "In progress",
+      "date": "Current",
+      "current": true,
+      "bullets": [
+        "Deepening core skills in corporate finance, valuation, and financial statement analysis.",
+        "Applying coursework directly to independent dashboard and modeling projects."
+      ],
+      "tags": [
+        "Corporate Finance",
+        "Valuation",
+        "Financial Analysis"
+      ]
+    },
+    {
+      "role": "Finance Intern",
+      "org": "Karnataka Cooperative Milk Producers Federation (KMF) · Bangalore",
+      "date": "01/2026 – 07/2026",
+      "current": false,
+      "bullets": [
+        "Performed financial statement, ratio, liquidity, and working-capital analysis.",
+        "Built financial forecasting and scenario-analysis models in Excel.",
+        "Conducted sensitivity and Monte Carlo risk analysis using Python.",
+        "Developed an interactive financial dashboard using Python and VS Code.",
+        "Automated data processing and validation, improving reporting accuracy.",
+        "Generated KPI dashboards and management reports for decision support."
+      ],
+      "tags": [
+        "Working Capital",
+        "Monte Carlo",
+        "Excel",
+        "Python",
+        "KPI Reporting"
+      ]
+    },
+    {
+      "role": "Independent Projects",
+      "org": "KMF Dashboard · Olive Capital",
+      "date": "Ongoing",
+      "current": false,
+      "bullets": [
+        "Designed and shipped two live finance projects — a forecasting dashboard and a valuation website.",
+        "Owned the process end-to-end: data structuring, modeling, UI, and deployment."
+      ],
+      "tags": [
+        "Next.js",
+        "Dashboards",
+        "Deployment"
+      ]
+    },
+    {
+      "role": "Next Goal",
+      "org": "Full-time Financial Analyst / Analytics role",
+      "date": "Target",
+      "current": false,
+      "bullets": [
+        "Looking to join a team where financial modeling meets applied analytics and dashboard tooling."
+      ],
+      "tags": []
+    }
+  ],
+  "projects": [
+    {
+      "tag": "Independent Project · 01",
+      "name": "KMF Finance Dashboard",
+      "description": "Financial dashboard built during my KMF internship for ratio, liquidity, and risk analysis.",
+      "features": [
+        "Ratio & liquidity analysis",
+        "Monte Carlo risk analysis",
+        "KPI & management reports",
+        "Built with Python"
+      ],
+      "liveUrl": "https://kmf-finance-dashboard-josh-kmf.vercel.app",
+      "visual": "bars"
+    },
+    {
+      "tag": "Independent Project · 02",
+      "name": "Olive Capital",
+      "description": "Equity valuation website automating DCF, WACC, and ratio analysis, deployed on Vercel.",
+      "features": [
+        "DCF & relative valuation",
+        "WACC & intrinsic value",
+        "ROE, liquidity, leverage",
+        "Downloadable reports"
+      ],
+      "liveUrl": "https://olive-capital-app.vercel.app/",
+      "visual": "line"
+    }
+  ],
+  "resume": {
+    "pdfUrl": "/resume.pdf",
+    "blurb": "MBA Finance candidate with hands-on experience in financial analysis, valuation, modeling, and dashboard development. Download the full resume, or reach out directly below."
+  }
+}
