@@ -1,6 +1,3 @@
-import fs from "fs";
-import path from "path";
-
 export interface Profile {
   name: string;
   roleLine: string;
@@ -77,13 +74,23 @@ export interface SiteContent {
   resume: Resume;
 }
 
-const DATA_PATH = path.join(process.cwd(), "data", "content.json");
+// The backend's base URL. Set NEXT_PUBLIC_API_BASE_URL in .env.local (dev) or in your
+// hosting provider's environment variables (production) to point at the deployed backend.
+export const API_BASE_URL =
+  process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:4000";
 
-export function getContent(): SiteContent {
-  const raw = fs.readFileSync(DATA_PATH, "utf-8");
-  return JSON.parse(raw) as SiteContent;
+// Resolve a resume/asset path against the backend, unless it's already a full URL
+export function resolveAssetUrl(pathOrUrl: string): string {
+  if (!pathOrUrl) return pathOrUrl;
+  if (/^https?:\/\//i.test(pathOrUrl)) return pathOrUrl;
+  return `${API_BASE_URL}${pathOrUrl.startsWith("/") ? "" : "/"}${pathOrUrl}`;
 }
 
-export function saveContent(content: SiteContent): void {
-  fs.writeFileSync(DATA_PATH, JSON.stringify(content, null, 2), "utf-8");
+// Server-side fetch (used in Server Components, e.g. app/page.tsx)
+export async function getContent(): Promise<SiteContent> {
+  const res = await fetch(`${API_BASE_URL}/api/content`, { cache: "no-store" });
+  if (!res.ok) {
+    throw new Error(`Failed to fetch content from backend: ${res.status}`);
+  }
+  return res.json();
 }

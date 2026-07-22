@@ -2,8 +2,10 @@
 
 import { motion } from "framer-motion";
 import type { Resume as ResumeType, Profile } from "@/lib/content";
+import { resolveAssetUrl } from "@/lib/content";
 
 export default function Resume({ resume, profile }: { resume: ResumeType; profile: Profile }) {
+  const pdfHref = resolveAssetUrl(resume.pdfUrl);
   return (
     <section id="resume" className="section-border-top">
       <div className="wrap">
@@ -21,10 +23,10 @@ export default function Resume({ resume, profile }: { resume: ResumeType; profil
             <p>{resume.blurb}</p>
           </div>
           <div className="resume-right">
-            <a href={resume.pdfUrl} download className="btn btn-primary">
+            <a href={pdfHref} download className="btn btn-primary">
               Download PDF ↓
             </a>
-            <a href={resume.pdfUrl} target="_blank" className="btn btn-outline" rel="noreferrer">
+            <a href={pdfHref} target="_blank" className="btn btn-outline" rel="noreferrer">
               Preview
             </a>
             <a href="#contact" className="btn btn-ghost">

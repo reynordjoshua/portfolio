@@ -3,11 +3,18 @@ import "./globals.css";
 import { getContent } from "@/lib/content";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const { profile } = getContent();
-  return {
-    title: `${profile.name} — Financial Analyst & Dashboard Developer`,
-    description: `Portfolio of ${profile.name} — MBA Finance Candidate, Financial Analyst, and Dashboard Developer.`,
-  };
+  try {
+    const { profile } = await getContent();
+    return {
+      title: `${profile.name} — Financial Analyst & Dashboard Developer`,
+      description: `Portfolio of ${profile.name} — MBA Finance Candidate, Financial Analyst, and Dashboard Developer.`,
+    };
+  } catch {
+    return {
+      title: "Portfolio — Financial Analyst & Dashboard Developer",
+      description: "Finance analyst portfolio.",
+    };
+  }
 }
 
 export default function RootLayout({

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { API_BASE_URL } from "@/lib/content";
 import type {
   SiteContent,
   EduItem,
@@ -18,17 +19,22 @@ export default function AdminPage() {
   const [status, setStatus] = useState<Status>({ type: "idle" });
 
   useEffect(() => {
-    fetch("/api/content")
+    fetch(`${API_BASE_URL}/api/content`)
       .then((r) => r.json())
       .then((data) => setContent(data))
-      .catch(() => setStatus({ type: "error", message: "Could not load content.json" }));
+      .catch(() =>
+        setStatus({
+          type: "error",
+          message: `Could not reach backend at ${API_BASE_URL}. Is it running?`,
+        })
+      );
   }, []);
 
   async function handleSave() {
     if (!content) return;
     setStatus({ type: "saving" });
     try {
-      const res = await fetch("/api/content", {
+      const res = await fetch(`${API_BASE_URL}/api/content`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(content),
